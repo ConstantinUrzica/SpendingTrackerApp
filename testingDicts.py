@@ -17,5 +17,5 @@ entry = {
 
 }
 
-testDict['2']=entry
+testDict['2'] = entry
 print(testDict)
