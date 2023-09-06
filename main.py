@@ -1,40 +1,15 @@
-# This is a sample Python script.
-import datetime
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-import json
+from functions import *
+from constants import *
 
 if __name__ == '__main__':
+    # Load the data
+    data = load_data(DATABASE)
 
-    # TODO: create a function for reading the database.
+    # Get user input
+    amount, tag, current_date = get_user_data()
 
-    # Load the database
-    with open('database.json', 'r+') as file:
-        data = json.load(file)
-        # Read input from client
-        print("Please enter the amount: ")
-        amount = input()
-        print("Please enter the appropriate tag [FOOD, BILLS, ENTERTAINMENT, EXTRA, ...]")
-        tag = input()
-        currentDate = str(datetime.datetime.now()).split(' ')[0]
+    # Retrieve last index and increment it
+    new_current_index = str(int(data['lastIndex']) + 1)
 
-        # retrieve last index and increment it
-        newCurrentIndex = str(int(data['lastIndex']) + 1)
-
-        # Form the object and append it
-        currentSpendingEntry = {
-            "amount": amount,
-            "tag": tag,
-            "date": currentDate
-        }
-        print("DEBUG:", currentSpendingEntry)
-        data["entries"][newCurrentIndex] = currentSpendingEntry
-        data["lastIndex"] = newCurrentIndex
-        file.seek(0)
-        json.dump(data, file)
-
-
-
-
-
+    # Update database
+    add_new_entry(data, amount, tag, current_date, new_current_index)
