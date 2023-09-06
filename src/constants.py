@@ -1,0 +1,1 @@
+DATABASE = 'src/database.json'
