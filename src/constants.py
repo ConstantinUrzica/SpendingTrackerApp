@@ -1,1 +1,2 @@
-DATABASE = 'src/database.json'
+DATABASE = 'database.json'
+CSVFILE = 'financialEntries.csv'
